@@ -1,0 +1,10 @@
+.tox
+*.pyc
+build/
+dist/
+.local
+uosci_reproter.egg-info/
+.coverage
+coverage.xml
+cover
+site

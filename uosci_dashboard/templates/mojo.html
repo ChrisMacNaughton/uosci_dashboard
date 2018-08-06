@@ -1,0 +1,39 @@
+{% extends "_layout.html" %}
+{% block body %}
+  <table class="table table-hover table-sm">
+    <thead>
+        <tr>
+            <th colspan="2">Spec</th>
+            {% for series in uos_combos %}
+                <th>{{series}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+  <tr>
+    <td colspan="2">Success Rate</td>
+    {% for series in uos_combos %}
+        <td>{{ uos_rates[series] }}%</td>
+    {% endfor %}
+  </tr>
+  {% for name, results in jobs.items() %}
+    <tr>
+    <td class="alert-{% if results.pass %}success{% else %}danger{% endif %}">{% if results.rate is not none %}{{ results.rate }}%{% endif %}</td>
+    <td class="alert-{% if results.pass %}success{% else %}danger{% endif %}">
+        <a target="_blank" href="{{jenkins_host}}/view/MojoMatrix/job/test_mojo_{{ name }}">{{ name }}</a><!--  <a href="{{name}}.html">link</a> --><br />
+        Runtime: {{ results.duration }} Diff: {{ results.duration_diff }}
+    </td>
+    {% for series in uos_combos %}
+       {% if results[series] %}
+            <td class="alert-{% if results[series].successful %}success{% else %}danger{% endif %}">
+                <a href="{{ results[series].url }}">{{ results[series].date.strftime("%d-%B") }}</a><br />
+                {{ results[series].duration }}
+       {% else %}
+            <td class="alert-dark">
+            NA
+       {% endif %}
+       </td>
+    {% endfor %}
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock %}
