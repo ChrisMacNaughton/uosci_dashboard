@@ -69,7 +69,7 @@ def main():
 
     for template, data in templates:
         print("Rendering {}".format(template.name))
-        with open("{}/{}".format(args.site, template.name), 'w') as f:
+        with open("{}/{}".format(args.path, template.name), 'w') as f:
             f.write(template.render(data))
     # template = get_template('index')
     # template.render()
