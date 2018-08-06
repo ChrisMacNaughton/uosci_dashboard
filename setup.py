@@ -8,7 +8,7 @@ from setuptools.command.test import test as TestCommand
 
 version = "0.0.1.dev1"
 install_require = [
-    'python-jenkins == 1.0.0',
+    'python-jenkins == 1.1.0',
     'Jinja2'
 ]
 
