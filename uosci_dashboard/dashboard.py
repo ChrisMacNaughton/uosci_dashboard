@@ -34,8 +34,11 @@ def parse_args(args):
                         required=False)
     parser.add_argument('-t', '--host',
                         help='Jenkins host')
+    parser.add_argument('-f', '--path',
+                        help='Site build path')
     parser.set_defaults(host='http://10.245.162.58:8080')
     parser.set_defaults(filter=None)
+    parser.set_defaults(path='site')
     return parser.parse_args(args)
 
 
@@ -53,7 +56,7 @@ def main():
         'password': args.password,
     }
     try:
-        os.mkdir('site')
+        os.mkdir(args.path)
     except:
         pass
     templates = []
@@ -66,7 +69,7 @@ def main():
 
     for template, data in templates:
         print("Rendering {}".format(template.name))
-        with open("site/{}".format(template.name), 'w') as f:
+        with open("{}/{}".format(args.site, template.name), 'w') as f:
             f.write(template.render(data))
     # template = get_template('index')
     # template.render()
