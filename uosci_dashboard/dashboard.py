@@ -1,5 +1,5 @@
 import argparse
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from jinja2 import Environment, PackageLoader, select_autoescape
 
 import os
 import sys
@@ -24,13 +24,7 @@ UOS_COMBOS = [
 
 
 def parse_args(args):
-    """Parse command line arguments
-
-    :param args: List of configure functions functions
-    :type list: [str1, str2,...] List of command line arguments
-    :returns: Parsed arguments
-    :rtype: Namespace
-    """
+    """Parse command line arguments"""
     parser = argparse.ArgumentParser()
     parser.add_argument('-u', '--username',
                         help='Jenkins User',
@@ -47,7 +41,7 @@ def parse_args(args):
 
 def main():
     env = Environment(
-        loader=FileSystemLoader('uosci_dashboard/templates'),
+        loader=PackageLoader('uosci_dashboard'),
         autoescape=select_autoescape(['html', 'xml']),
     )
     env.globals['uos_combos'] = UOS_COMBOS
