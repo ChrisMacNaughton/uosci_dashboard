@@ -15,7 +15,7 @@
         <td>{{ uos_rates[series] }}%</td>
     {% endfor %}
   </tr>
-  {% for name, results in jobs.items() %}
+  {% for name, results in jobs.items()|sort %}
     <tr>
     <td class="alert-{% if results.pass %}success{% else %}danger{% endif %}">{% if results.rate is not none %}{{ results.rate }}%{% endif %}</td>
     <td class="alert-{% if results.pass %}success{% else %}danger{% endif %}">
