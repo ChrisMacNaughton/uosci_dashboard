@@ -19,7 +19,7 @@ UOS_COMBOS = [
     # 'artful-pike',
     'bionic-queens',
     'bionic-rocky',
-    # 'cosmic-rocky',
+    'cosmic-rocky',
 ]
 
 
